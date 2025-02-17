@@ -1,4 +1,3 @@
-package ru.netology
 
 data class CommentCrud(
     val id: Int = 0,
@@ -7,4 +6,8 @@ data class CommentCrud(
 ) : Crud {
 
     var isDeleted: Boolean = false
+
+    override fun toString(): String {
+        return "This is comment with Id = $id, noteId = $noteId and message = $message"
+    }
 }

@@ -1,4 +1,3 @@
-package ru.netology
 
 object NoteService {
     var notes = mutableListOf<NoteCrud>()
@@ -9,14 +8,14 @@ object NoteService {
     fun add(title: String, text: String): Int {
         noteId += 1
         notes.add(NoteCrud(noteId, title, text))
-        TODO("проверка существует ли заметка с таким title?")
+        //TODO("проверка существует ли заметка с таким title?")
         return noteId
     }
 
     fun createComment(noteId: String, message: String): Int {
         commentId += 1
         comments.add(CommentCrud(commentId, noteId, message))
-        TODO("проверка существует ли заметка с таким id?")
+        //TODO("проверка существует ли заметка с таким id?")
         return commentId
     }
 
@@ -62,7 +61,7 @@ object NoteService {
 
     fun get(noteIds: Array<Int>, offset: Int = 0, count: Int = 0): Array<NoteCrud> {
         var notesToGet = arrayOf<NoteCrud>()
-        for (i in offset..offset + count){
+        for (i in offset..offset + count - 1){
             for (noteId in noteIds){
                 if(notes[i].id == noteId) {
                     notesToGet += notes[i]
@@ -74,7 +73,7 @@ object NoteService {
 
     fun getById(noteId: Int): NoteCrud? {
         for (note in notes) {
-            if (noteId.toInt() == note.id) {
+            if (noteId == note.id) {
                 return note
             }
         }
@@ -89,7 +88,7 @@ object NoteService {
             }
         }
         var commentsToGet = arrayOf<CommentCrud>()
-        for (i in offset..offset + count) {
+        for (i in offset..offset + count - 1) {
             commentsToGet += commentsToGetAll[i]
         }
         return commentsToGet
@@ -103,5 +102,12 @@ object NoteService {
             }
         }
         return 0
+    }
+
+    fun clear() {
+        notes = mutableListOf<NoteCrud>()
+        comments = mutableListOf<CommentCrud>()
+        noteId = 0
+        commentId = 0
     }
 }

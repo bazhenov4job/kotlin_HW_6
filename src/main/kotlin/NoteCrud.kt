@@ -1,7 +1,11 @@
-package ru.netology
 
 data class NoteCrud(
     val id: Int = 0,
     val title: String = "",
     val text: String = ""
-) : Crud
+) : Crud {
+
+    override fun toString(): String {
+        return "This is note with Id = $id, title = $title and text = $text"
+    }
+}
